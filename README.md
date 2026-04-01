@@ -1,11 +1,17 @@
 # DS 4320 Project 1: Predicting Commercial Electricity Price Impacts from Data Center Growth Across the United States
 
 **Name:** Ethan Cao
+
 **NetID:** wkt7ne
+
 **DOI:** [10.5281/zenodo.19363472](https://doi.org/10.5281/zenodo.19363472)
+
 **License:** MIT — [LICENSE](LICENSE)
+
 **Press Release:** [press_release.md](press_release.md)
+
 **Data:** [UVA OneDrive](https://myuva-my.sharepoint.com/:f:/g/personal/wkt7ne_virginia_edu/IgAnZv32gJWCT5OvMZHNHLbRASdhLY7_QWsDXghfffwreWA?e=dzkXL8)
+
 **Pipeline:** code/pipeline.ipynb 
 
 ---

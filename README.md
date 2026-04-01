@@ -38,6 +38,8 @@ This project is a full end-to-end predictive modelling pipeline that predicts ho
 
 **"The AI Boom Could Cost You Dearly: The explosion in demand fo data centers by corporate giants is projected to raise electricity bills across dozens of states."**
 
+[Read the full press release](press_release.md)
+
 ---
 
 ## Domain Exposition

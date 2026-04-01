@@ -1,1 +1,4 @@
-data-center-venv/
+data-center-venv
+data
+.claude
+.gitignore

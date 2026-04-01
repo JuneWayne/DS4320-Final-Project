@@ -1,0 +1,1116 @@
+2026-03-30 15:30:31,839 - INFO - Pipeline started
+2026-03-30 15:30:32,805 - INFO - four tables loaded
+2026-03-30 15:30:32,822 - INFO - First 5 rows of retail_sales:
+    period stateid stateDescription sectorid   sectorName  customers  price  \
+0  2015-01      AK           Alaska      ALL  all sectors     331677  17.20   
+1  2015-01      AK           Alaska      COM   commercial      50308  16.88   
+2  2015-01      AK           Alaska      IND   industrial       1269  14.21   
+3  2015-01      AK           Alaska      OTH        other       <NA>    NaN   
+4  2015-01      AK           Alaska      RES  residential     280100  19.09   
+
+     revenue      sales      customers-units              price-units  \
+0  100.05842  581.79087  number of customers  cents per kilowatt-hour   
+1   42.30951  250.60023  number of customers  cents per kilowatt-hour   
+2   15.95628  112.25382  number of customers  cents per kilowatt-hour   
+3        NaN        NaN  number of customers  cents per kilowatt-hour   
+4   41.79263  218.93683  number of customers  cents per kilowatt-hour   
+
+     revenue-units             sales-units  
+0  million dollars  million kilowatt hours  
+1  million dollars  million kilowatt hours  
+2  million dollars  million kilowatt hours  
+3  million dollars  million kilowatt hours  
+4  million dollars  million kilowatt hours  
+2026-03-30 15:30:32,831 - INFO - Row count of retail_sales: 49476
+2026-03-30 15:30:32,837 - INFO - First 5 rows of renewable_gen:
+    period location stateDescription  sectorid sectorDescription fueltypeid  \
+0  2015-01       90          Pacific         1  Electric Utility        GEO   
+1  2015-01       90          Pacific         1  Electric Utility        HYC   
+2  2015-01       90          Pacific         1  Electric Utility        SUN   
+3  2015-01       90          Pacific         1  Electric Utility        WND   
+4  2015-01       90          Pacific         2       IPP Non-CHP        GEO   
+
+          fuelTypeDescription   generation        generation-units  
+0                  geothermal     71.01000  thousand megawatthours  
+1  conventional hydroelectric  13018.48468  thousand megawatthours  
+2                       solar     20.90664  thousand megawatthours  
+3                        wind    204.57043  thousand megawatthours  
+4                  geothermal   1009.18196  thousand megawatthours  
+2026-03-30 15:30:32,842 - INFO - Row count of renewable_gen: 179652
+2026-03-30 15:30:32,848 - INFO - First 5 rows of total_gen:
+    period location stateDescription  sectorid sectorDescription fueltypeid  \
+0  2015-01       90          Pacific         1  Electric Utility        ALL   
+1  2015-01       90          Pacific         1  Electric Utility        AOR   
+2  2015-01       90          Pacific         2       IPP Non-CHP        ALL   
+3  2015-01       90          Pacific         2       IPP Non-CHP        AOR   
+4  2015-01       90          Pacific         3           IPP CHP        ALL   
+
+  fuelTypeDescription   generation        generation-units  
+0           all fuels  20895.35436  thousand megawatthours  
+1      all renewables    374.59708  thousand megawatthours  
+2           all fuels   7080.29286  thousand megawatthours  
+3      all renewables   2581.26015  thousand megawatthours  
+4           all fuels   2110.66660  thousand megawatthours  
+2026-03-30 15:30:32,854 - INFO - Row count of total_gen: 194055
+2026-03-30 15:30:32,862 - INFO - First 5 rows of dc_current:
+            id           state state_abb state_id             county  \
+0  00002744301      New Jersey        NJ       34   Middlesex County   
+1  00009474864  North Carolina        NC       37    Caldwell County   
+2  00013924557            Iowa        IA       19        Polk County   
+3  00014593270  North Carolina        NC       37     Catawba County   
+4  00014930068      New Mexico        NM       35  Bernalillo County   
+
+  county_id                      operator  ref                        name  \
+0       023                           NaN  NaN                     Verizon   
+1       027                        Google  NaN          Google Data Center   
+2       153                     Microsoft  NaN            Project Alluvion   
+3       035                           NaN  NaN  Apple - Maiden Data Center   
+4       001  Sandia National Laboratories  880                         HPC   
+
+         sqft         lon        lat      type  
+0    105786.0  -74.496521  40.544256  building  
+1   3407194.0  -81.546515  35.894738    campus  
+2  11169421.0  -93.711830  41.515967    campus  
+3   5431080.0  -81.261809  35.588771    campus  
+4    158463.0 -106.542822  35.049942  building  
+2026-03-30 15:30:32,869 - INFO - Row count of dc_current: 1479
+2026-03-30 15:30:33,561 - INFO - Loaded dc_projected: 16645 rows
+2026-03-30 15:30:33,636 - INFO - DC by state: 47 states
+2026-03-30 15:30:33,693 - INFO - Training table: 6916 rows
+2026-03-30 15:30:33,751 - INFO - Projected by state/scenario: 545 rows
+2026-03-30 15:31:41,621 - INFO - Model RMSE: 1.6121 | Baseline RMSE: 5.9431
+2026-03-30 15:33:29,872 - INFO - Pipeline started
+2026-03-30 15:33:30,720 - INFO - four tables loaded
+2026-03-30 15:33:30,734 - INFO - First 5 rows of retail_sales:
+    period stateid stateDescription sectorid   sectorName  customers  price  \
+0  2015-01      AK           Alaska      ALL  all sectors     331677  17.20   
+1  2015-01      AK           Alaska      COM   commercial      50308  16.88   
+2  2015-01      AK           Alaska      IND   industrial       1269  14.21   
+3  2015-01      AK           Alaska      OTH        other       <NA>    NaN   
+4  2015-01      AK           Alaska      RES  residential     280100  19.09   
+
+     revenue      sales      customers-units              price-units  \
+0  100.05842  581.79087  number of customers  cents per kilowatt-hour   
+1   42.30951  250.60023  number of customers  cents per kilowatt-hour   
+2   15.95628  112.25382  number of customers  cents per kilowatt-hour   
+3        NaN        NaN  number of customers  cents per kilowatt-hour   
+4   41.79263  218.93683  number of customers  cents per kilowatt-hour   
+
+     revenue-units             sales-units  
+0  million dollars  million kilowatt hours  
+1  million dollars  million kilowatt hours  
+2  million dollars  million kilowatt hours  
+3  million dollars  million kilowatt hours  
+4  million dollars  million kilowatt hours  
+2026-03-30 15:33:30,739 - INFO - Row count of retail_sales: 49476
+2026-03-30 15:33:30,745 - INFO - First 5 rows of renewable_gen:
+    period location stateDescription  sectorid sectorDescription fueltypeid  \
+0  2015-01       90          Pacific         1  Electric Utility        GEO   
+1  2015-01       90          Pacific         1  Electric Utility        HYC   
+2  2015-01       90          Pacific         1  Electric Utility        SUN   
+3  2015-01       90          Pacific         1  Electric Utility        WND   
+4  2015-01       90          Pacific         2       IPP Non-CHP        GEO   
+
+          fuelTypeDescription   generation        generation-units  
+0                  geothermal     71.01000  thousand megawatthours  
+1  conventional hydroelectric  13018.48468  thousand megawatthours  
+2                       solar     20.90664  thousand megawatthours  
+3                        wind    204.57043  thousand megawatthours  
+4                  geothermal   1009.18196  thousand megawatthours  
+2026-03-30 15:33:30,750 - INFO - Row count of renewable_gen: 179652
+2026-03-30 15:33:30,754 - INFO - First 5 rows of total_gen:
+    period location stateDescription  sectorid sectorDescription fueltypeid  \
+0  2015-01       90          Pacific         1  Electric Utility        ALL   
+1  2015-01       90          Pacific         1  Electric Utility        AOR   
+2  2015-01       90          Pacific         2       IPP Non-CHP        ALL   
+3  2015-01       90          Pacific         2       IPP Non-CHP        AOR   
+4  2015-01       90          Pacific         3           IPP CHP        ALL   
+
+  fuelTypeDescription   generation        generation-units  
+0           all fuels  20895.35436  thousand megawatthours  
+1      all renewables    374.59708  thousand megawatthours  
+2           all fuels   7080.29286  thousand megawatthours  
+3      all renewables   2581.26015  thousand megawatthours  
+4           all fuels   2110.66660  thousand megawatthours  
+2026-03-30 15:33:30,757 - INFO - Row count of total_gen: 194055
+2026-03-30 15:33:30,763 - INFO - First 5 rows of dc_current:
+            id           state state_abb state_id             county  \
+0  00002744301      New Jersey        NJ       34   Middlesex County   
+1  00009474864  North Carolina        NC       37    Caldwell County   
+2  00013924557            Iowa        IA       19        Polk County   
+3  00014593270  North Carolina        NC       37     Catawba County   
+4  00014930068      New Mexico        NM       35  Bernalillo County   
+
+  county_id                      operator  ref                        name  \
+0       023                           NaN  NaN                     Verizon   
+1       027                        Google  NaN          Google Data Center   
+2       153                     Microsoft  NaN            Project Alluvion   
+3       035                           NaN  NaN  Apple - Maiden Data Center   
+4       001  Sandia National Laboratories  880                         HPC   
+
+         sqft         lon        lat      type  
+0    105786.0  -74.496521  40.544256  building  
+1   3407194.0  -81.546515  35.894738    campus  
+2  11169421.0  -93.711830  41.515967    campus  
+3   5431080.0  -81.261809  35.588771    campus  
+4    158463.0 -106.542822  35.049942  building  
+2026-03-30 15:33:30,768 - INFO - Row count of dc_current: 1479
+2026-03-30 15:33:31,333 - INFO - Loaded dc_projected: 16645 rows
+2026-03-30 15:33:31,378 - INFO - DC by state: 47 states
+2026-03-30 15:33:31,425 - INFO - Training table: 6916 rows
+2026-03-30 15:33:31,483 - INFO - Projected by state/scenario: 545 rows
+2026-03-30 15:33:34,339 - INFO - Model RMSE: 1.6121 | Baseline RMSE: 5.9431
+2026-03-30 15:33:36,248 - INFO - Predictions complete: 1040 rows
+2026-03-30 15:33:36,780 - INFO - Choropleth saved to ../logs/price_impact_map.html
+2026-03-30 15:33:36,968 - INFO - Pipeline complete
+2026-03-30 15:57:38,114 - INFO - Val RMSE: 1.3499 | Test RMSE: 2.1244 | Baseline: 6.0192
+2026-03-30 16:02:14,021 - INFO - Pipeline started
+2026-03-30 16:02:14,937 - INFO - four tables loaded
+2026-03-30 16:02:14,952 - INFO - First 5 rows of retail_sales:
+    period stateid stateDescription sectorid   sectorName  customers  price  \
+0  2015-01      AK           Alaska      ALL  all sectors     331677  17.20   
+1  2015-01      AK           Alaska      COM   commercial      50308  16.88   
+2  2015-01      AK           Alaska      IND   industrial       1269  14.21   
+3  2015-01      AK           Alaska      OTH        other       <NA>    NaN   
+4  2015-01      AK           Alaska      RES  residential     280100  19.09   
+
+     revenue      sales      customers-units              price-units  \
+0  100.05842  581.79087  number of customers  cents per kilowatt-hour   
+1   42.30951  250.60023  number of customers  cents per kilowatt-hour   
+2   15.95628  112.25382  number of customers  cents per kilowatt-hour   
+3        NaN        NaN  number of customers  cents per kilowatt-hour   
+4   41.79263  218.93683  number of customers  cents per kilowatt-hour   
+
+     revenue-units             sales-units  
+0  million dollars  million kilowatt hours  
+1  million dollars  million kilowatt hours  
+2  million dollars  million kilowatt hours  
+3  million dollars  million kilowatt hours  
+4  million dollars  million kilowatt hours  
+2026-03-30 16:02:14,960 - INFO - Row count of retail_sales: 49476
+2026-03-30 16:02:14,966 - INFO - First 5 rows of renewable_gen:
+    period location stateDescription  sectorid sectorDescription fueltypeid  \
+0  2015-01       90          Pacific         1  Electric Utility        GEO   
+1  2015-01       90          Pacific         1  Electric Utility        HYC   
+2  2015-01       90          Pacific         1  Electric Utility        SUN   
+3  2015-01       90          Pacific         1  Electric Utility        WND   
+4  2015-01       90          Pacific         2       IPP Non-CHP        GEO   
+
+          fuelTypeDescription   generation        generation-units  
+0                  geothermal     71.01000  thousand megawatthours  
+1  conventional hydroelectric  13018.48468  thousand megawatthours  
+2                       solar     20.90664  thousand megawatthours  
+3                        wind    204.57043  thousand megawatthours  
+4                  geothermal   1009.18196  thousand megawatthours  
+2026-03-30 16:02:14,970 - INFO - Row count of renewable_gen: 179652
+2026-03-30 16:02:14,975 - INFO - First 5 rows of total_gen:
+    period location stateDescription  sectorid sectorDescription fueltypeid  \
+0  2015-01       90          Pacific         1  Electric Utility        ALL   
+1  2015-01       90          Pacific         1  Electric Utility        AOR   
+2  2015-01       90          Pacific         2       IPP Non-CHP        ALL   
+3  2015-01       90          Pacific         2       IPP Non-CHP        AOR   
+4  2015-01       90          Pacific         3           IPP CHP        ALL   
+
+  fuelTypeDescription   generation        generation-units  
+0           all fuels  20895.35436  thousand megawatthours  
+1      all renewables    374.59708  thousand megawatthours  
+2           all fuels   7080.29286  thousand megawatthours  
+3      all renewables   2581.26015  thousand megawatthours  
+4           all fuels   2110.66660  thousand megawatthours  
+2026-03-30 16:02:14,980 - INFO - Row count of total_gen: 194055
+2026-03-30 16:02:14,987 - INFO - First 5 rows of dc_current:
+            id           state state_abb state_id             county  \
+0  00002744301      New Jersey        NJ       34   Middlesex County   
+1  00009474864  North Carolina        NC       37    Caldwell County   
+2  00013924557            Iowa        IA       19        Polk County   
+3  00014593270  North Carolina        NC       37     Catawba County   
+4  00014930068      New Mexico        NM       35  Bernalillo County   
+
+  county_id                      operator  ref                        name  \
+0       023                           NaN  NaN                     Verizon   
+1       027                        Google  NaN          Google Data Center   
+2       153                     Microsoft  NaN            Project Alluvion   
+3       035                           NaN  NaN  Apple - Maiden Data Center   
+4       001  Sandia National Laboratories  880                         HPC   
+
+         sqft         lon        lat      type  
+0    105786.0  -74.496521  40.544256  building  
+1   3407194.0  -81.546515  35.894738    campus  
+2  11169421.0  -93.711830  41.515967    campus  
+3   5431080.0  -81.261809  35.588771    campus  
+4    158463.0 -106.542822  35.049942  building  
+2026-03-30 16:02:14,993 - INFO - Row count of dc_current: 1479
+2026-03-30 16:02:15,709 - INFO - Loaded dc_projected: 16645 rows
+2026-03-30 16:02:15,830 - INFO - DC by state: 47 states
+2026-03-30 16:02:15,922 - INFO - Training table: 6916 rows
+2026-03-30 16:02:16,023 - INFO - Projected by state/scenario: 545 rows
+2026-03-30 16:02:17,218 - INFO - Val RMSE: 1.3499 | Test RMSE: 2.1244 | Baseline: 6.0192
+2026-03-30 16:02:18,184 - INFO - Predictions complete: 1040 rows
+2026-03-30 16:02:18,798 - INFO - Choropleth saved to ../logs/price_impact_map.html
+2026-03-30 16:02:18,887 - INFO - Pipeline complete
+2026-03-30 16:06:08,059 - INFO - Predictions complete: 1040 rows
+2026-03-30 16:25:45,373 - INFO - Predictions complete: 1040 rows
+2026-03-30 16:29:33,047 - INFO - Predictions complete: 1040 rows
+2026-03-30 16:29:46,420 - INFO - Pipeline started
+2026-03-30 16:29:47,592 - INFO - four tables loaded
+2026-03-30 16:29:47,620 - INFO - First 5 rows of retail_sales:
+    period stateid stateDescription sectorid   sectorName  customers  price  \
+0  2015-01      AK           Alaska      ALL  all sectors     331677  17.20   
+1  2015-01      AK           Alaska      COM   commercial      50308  16.88   
+2  2015-01      AK           Alaska      IND   industrial       1269  14.21   
+3  2015-01      AK           Alaska      OTH        other       <NA>    NaN   
+4  2015-01      AK           Alaska      RES  residential     280100  19.09   
+
+     revenue      sales      customers-units              price-units  \
+0  100.05842  581.79087  number of customers  cents per kilowatt-hour   
+1   42.30951  250.60023  number of customers  cents per kilowatt-hour   
+2   15.95628  112.25382  number of customers  cents per kilowatt-hour   
+3        NaN        NaN  number of customers  cents per kilowatt-hour   
+4   41.79263  218.93683  number of customers  cents per kilowatt-hour   
+
+     revenue-units             sales-units  
+0  million dollars  million kilowatt hours  
+1  million dollars  million kilowatt hours  
+2  million dollars  million kilowatt hours  
+3  million dollars  million kilowatt hours  
+4  million dollars  million kilowatt hours  
+2026-03-30 16:29:47,632 - INFO - Row count of retail_sales: 49476
+2026-03-30 16:29:47,642 - INFO - First 5 rows of renewable_gen:
+    period location stateDescription  sectorid sectorDescription fueltypeid  \
+0  2015-01       90          Pacific         1  Electric Utility        GEO   
+1  2015-01       90          Pacific         1  Electric Utility        HYC   
+2  2015-01       90          Pacific         1  Electric Utility        SUN   
+3  2015-01       90          Pacific         1  Electric Utility        WND   
+4  2015-01       90          Pacific         2       IPP Non-CHP        GEO   
+
+          fuelTypeDescription   generation        generation-units  
+0                  geothermal     71.01000  thousand megawatthours  
+1  conventional hydroelectric  13018.48468  thousand megawatthours  
+2                       solar     20.90664  thousand megawatthours  
+3                        wind    204.57043  thousand megawatthours  
+4                  geothermal   1009.18196  thousand megawatthours  
+2026-03-30 16:29:47,649 - INFO - Row count of renewable_gen: 179652
+2026-03-30 16:29:47,657 - INFO - First 5 rows of total_gen:
+    period location stateDescription  sectorid sectorDescription fueltypeid  \
+0  2015-01       90          Pacific         1  Electric Utility        ALL   
+1  2015-01       90          Pacific         1  Electric Utility        AOR   
+2  2015-01       90          Pacific         2       IPP Non-CHP        ALL   
+3  2015-01       90          Pacific         2       IPP Non-CHP        AOR   
+4  2015-01       90          Pacific         3           IPP CHP        ALL   
+
+  fuelTypeDescription   generation        generation-units  
+0           all fuels  20895.35436  thousand megawatthours  
+1      all renewables    374.59708  thousand megawatthours  
+2           all fuels   7080.29286  thousand megawatthours  
+3      all renewables   2581.26015  thousand megawatthours  
+4           all fuels   2110.66660  thousand megawatthours  
+2026-03-30 16:29:47,663 - INFO - Row count of total_gen: 194055
+2026-03-30 16:29:47,674 - INFO - First 5 rows of dc_current:
+            id           state state_abb state_id             county  \
+0  00002744301      New Jersey        NJ       34   Middlesex County   
+1  00009474864  North Carolina        NC       37    Caldwell County   
+2  00013924557            Iowa        IA       19        Polk County   
+3  00014593270  North Carolina        NC       37     Catawba County   
+4  00014930068      New Mexico        NM       35  Bernalillo County   
+
+  county_id                      operator  ref                        name  \
+0       023                           NaN  NaN                     Verizon   
+1       027                        Google  NaN          Google Data Center   
+2       153                     Microsoft  NaN            Project Alluvion   
+3       035                           NaN  NaN  Apple - Maiden Data Center   
+4       001  Sandia National Laboratories  880                         HPC   
+
+         sqft         lon        lat      type  
+0    105786.0  -74.496521  40.544256  building  
+1   3407194.0  -81.546515  35.894738    campus  
+2  11169421.0  -93.711830  41.515967    campus  
+3   5431080.0  -81.261809  35.588771    campus  
+4    158463.0 -106.542822  35.049942  building  
+2026-03-30 16:29:47,682 - INFO - Row count of dc_current: 1479
+2026-03-30 16:29:48,545 - INFO - Loaded dc_projected: 16645 rows
+2026-03-30 16:29:48,581 - INFO - DC by state: 47 states
+2026-03-30 16:29:48,684 - INFO - Training table: 6916 rows
+2026-03-30 16:29:48,764 - INFO - Projected by state/scenario: 545 rows
+2026-03-30 16:29:51,308 - INFO - Val RMSE: 1.3499 | Test RMSE: 2.1244 | Baseline: 6.0192
+2026-03-30 16:29:52,457 - INFO - Predictions complete: 1040 rows
+2026-03-30 16:29:52,766 - INFO - Choropleth saved to ../logs/price_impact_map.html
+2026-03-30 16:29:52,852 - INFO - Pipeline complete
+2026-03-30 16:33:37,795 - INFO - Pipeline started
+2026-03-30 16:33:39,360 - INFO - four tables loaded
+2026-03-30 16:33:39,387 - INFO - First 5 rows of retail_sales:
+    period stateid stateDescription sectorid   sectorName  customers  price  \
+0  2015-01      AK           Alaska      ALL  all sectors     331677  17.20   
+1  2015-01      AK           Alaska      COM   commercial      50308  16.88   
+2  2015-01      AK           Alaska      IND   industrial       1269  14.21   
+3  2015-01      AK           Alaska      OTH        other       <NA>    NaN   
+4  2015-01      AK           Alaska      RES  residential     280100  19.09   
+
+     revenue      sales      customers-units              price-units  \
+0  100.05842  581.79087  number of customers  cents per kilowatt-hour   
+1   42.30951  250.60023  number of customers  cents per kilowatt-hour   
+2   15.95628  112.25382  number of customers  cents per kilowatt-hour   
+3        NaN        NaN  number of customers  cents per kilowatt-hour   
+4   41.79263  218.93683  number of customers  cents per kilowatt-hour   
+
+     revenue-units             sales-units  
+0  million dollars  million kilowatt hours  
+1  million dollars  million kilowatt hours  
+2  million dollars  million kilowatt hours  
+3  million dollars  million kilowatt hours  
+4  million dollars  million kilowatt hours  
+2026-03-30 16:33:39,397 - INFO - Row count of retail_sales: 49476
+2026-03-30 16:33:39,409 - INFO - First 5 rows of renewable_gen:
+    period location stateDescription  sectorid sectorDescription fueltypeid  \
+0  2015-01       90          Pacific         1  Electric Utility        GEO   
+1  2015-01       90          Pacific         1  Electric Utility        HYC   
+2  2015-01       90          Pacific         1  Electric Utility        SUN   
+3  2015-01       90          Pacific         1  Electric Utility        WND   
+4  2015-01       90          Pacific         2       IPP Non-CHP        GEO   
+
+          fuelTypeDescription   generation        generation-units  
+0                  geothermal     71.01000  thousand megawatthours  
+1  conventional hydroelectric  13018.48468  thousand megawatthours  
+2                       solar     20.90664  thousand megawatthours  
+3                        wind    204.57043  thousand megawatthours  
+4                  geothermal   1009.18196  thousand megawatthours  
+2026-03-30 16:33:39,417 - INFO - Row count of renewable_gen: 179652
+2026-03-30 16:33:39,426 - INFO - First 5 rows of total_gen:
+    period location stateDescription  sectorid sectorDescription fueltypeid  \
+0  2015-01       90          Pacific         1  Electric Utility        ALL   
+1  2015-01       90          Pacific         1  Electric Utility        AOR   
+2  2015-01       90          Pacific         2       IPP Non-CHP        ALL   
+3  2015-01       90          Pacific         2       IPP Non-CHP        AOR   
+4  2015-01       90          Pacific         3           IPP CHP        ALL   
+
+  fuelTypeDescription   generation        generation-units  
+0           all fuels  20895.35436  thousand megawatthours  
+1      all renewables    374.59708  thousand megawatthours  
+2           all fuels   7080.29286  thousand megawatthours  
+3      all renewables   2581.26015  thousand megawatthours  
+4           all fuels   2110.66660  thousand megawatthours  
+2026-03-30 16:33:39,432 - INFO - Row count of total_gen: 194055
+2026-03-30 16:33:39,448 - INFO - First 5 rows of dc_current:
+            id           state state_abb state_id             county  \
+0  00002744301      New Jersey        NJ       34   Middlesex County   
+1  00009474864  North Carolina        NC       37    Caldwell County   
+2  00013924557            Iowa        IA       19        Polk County   
+3  00014593270  North Carolina        NC       37     Catawba County   
+4  00014930068      New Mexico        NM       35  Bernalillo County   
+
+  county_id                      operator  ref                        name  \
+0       023                           NaN  NaN                     Verizon   
+1       027                        Google  NaN          Google Data Center   
+2       153                     Microsoft  NaN            Project Alluvion   
+3       035                           NaN  NaN  Apple - Maiden Data Center   
+4       001  Sandia National Laboratories  880                         HPC   
+
+         sqft         lon        lat      type  
+0    105786.0  -74.496521  40.544256  building  
+1   3407194.0  -81.546515  35.894738    campus  
+2  11169421.0  -93.711830  41.515967    campus  
+3   5431080.0  -81.261809  35.588771    campus  
+4    158463.0 -106.542822  35.049942  building  
+2026-03-30 16:33:39,460 - INFO - Row count of dc_current: 1479
+2026-03-30 16:33:40,928 - INFO - Loaded dc_projected: 16645 rows
+2026-03-30 16:33:40,973 - INFO - DC by state: 47 states
+2026-03-30 16:33:41,103 - INFO - Training table: 6916 rows
+2026-03-30 16:33:41,167 - INFO - Projected by state/scenario: 545 rows
+2026-03-30 16:33:57,616 - INFO - Val RMSE: 1.4051 | Test RMSE: 2.1788 | Baseline: 6.0192
+2026-03-30 16:33:59,860 - INFO - Predictions complete: 1040 rows
+2026-03-30 16:34:00,692 - INFO - Choropleth saved to ../logs/price_impact_map.html
+2026-03-30 16:34:00,903 - INFO - Pipeline complete
+2026-03-30 16:37:54,762 - INFO - Pipeline started
+2026-03-30 16:37:56,330 - INFO - four tables loaded
+2026-03-30 16:37:56,354 - INFO - First 5 rows of retail_sales:
+    period stateid stateDescription sectorid   sectorName  customers  price  \
+0  2015-01      AK           Alaska      ALL  all sectors     331677  17.20   
+1  2015-01      AK           Alaska      COM   commercial      50308  16.88   
+2  2015-01      AK           Alaska      IND   industrial       1269  14.21   
+3  2015-01      AK           Alaska      OTH        other       <NA>    NaN   
+4  2015-01      AK           Alaska      RES  residential     280100  19.09   
+
+     revenue      sales      customers-units              price-units  \
+0  100.05842  581.79087  number of customers  cents per kilowatt-hour   
+1   42.30951  250.60023  number of customers  cents per kilowatt-hour   
+2   15.95628  112.25382  number of customers  cents per kilowatt-hour   
+3        NaN        NaN  number of customers  cents per kilowatt-hour   
+4   41.79263  218.93683  number of customers  cents per kilowatt-hour   
+
+     revenue-units             sales-units  
+0  million dollars  million kilowatt hours  
+1  million dollars  million kilowatt hours  
+2  million dollars  million kilowatt hours  
+3  million dollars  million kilowatt hours  
+4  million dollars  million kilowatt hours  
+2026-03-30 16:37:56,366 - INFO - Row count of retail_sales: 49476
+2026-03-30 16:37:56,377 - INFO - First 5 rows of renewable_gen:
+    period location stateDescription  sectorid sectorDescription fueltypeid  \
+0  2015-01       90          Pacific         1  Electric Utility        GEO   
+1  2015-01       90          Pacific         1  Electric Utility        HYC   
+2  2015-01       90          Pacific         1  Electric Utility        SUN   
+3  2015-01       90          Pacific         1  Electric Utility        WND   
+4  2015-01       90          Pacific         2       IPP Non-CHP        GEO   
+
+          fuelTypeDescription   generation        generation-units  
+0                  geothermal     71.01000  thousand megawatthours  
+1  conventional hydroelectric  13018.48468  thousand megawatthours  
+2                       solar     20.90664  thousand megawatthours  
+3                        wind    204.57043  thousand megawatthours  
+4                  geothermal   1009.18196  thousand megawatthours  
+2026-03-30 16:37:56,384 - INFO - Row count of renewable_gen: 179652
+2026-03-30 16:37:56,394 - INFO - First 5 rows of total_gen:
+    period location stateDescription  sectorid sectorDescription fueltypeid  \
+0  2015-01       90          Pacific         1  Electric Utility        ALL   
+1  2015-01       90          Pacific         1  Electric Utility        AOR   
+2  2015-01       90          Pacific         2       IPP Non-CHP        ALL   
+3  2015-01       90          Pacific         2       IPP Non-CHP        AOR   
+4  2015-01       90          Pacific         3           IPP CHP        ALL   
+
+  fuelTypeDescription   generation        generation-units  
+0           all fuels  20895.35436  thousand megawatthours  
+1      all renewables    374.59708  thousand megawatthours  
+2           all fuels   7080.29286  thousand megawatthours  
+3      all renewables   2581.26015  thousand megawatthours  
+4           all fuels   2110.66660  thousand megawatthours  
+2026-03-30 16:37:56,401 - INFO - Row count of total_gen: 194055
+2026-03-30 16:37:56,417 - INFO - First 5 rows of dc_current:
+            id           state state_abb state_id             county  \
+0  00002744301      New Jersey        NJ       34   Middlesex County   
+1  00009474864  North Carolina        NC       37    Caldwell County   
+2  00013924557            Iowa        IA       19        Polk County   
+3  00014593270  North Carolina        NC       37     Catawba County   
+4  00014930068      New Mexico        NM       35  Bernalillo County   
+
+  county_id                      operator  ref                        name  \
+0       023                           NaN  NaN                     Verizon   
+1       027                        Google  NaN          Google Data Center   
+2       153                     Microsoft  NaN            Project Alluvion   
+3       035                           NaN  NaN  Apple - Maiden Data Center   
+4       001  Sandia National Laboratories  880                         HPC   
+
+         sqft         lon        lat      type  
+0    105786.0  -74.496521  40.544256  building  
+1   3407194.0  -81.546515  35.894738    campus  
+2  11169421.0  -93.711830  41.515967    campus  
+3   5431080.0  -81.261809  35.588771    campus  
+4    158463.0 -106.542822  35.049942  building  
+2026-03-30 16:37:56,432 - INFO - Row count of dc_current: 1479
+2026-03-30 16:37:57,447 - INFO - Loaded dc_projected: 16645 rows
+2026-03-30 16:37:57,507 - INFO - DC by state: 47 states
+2026-03-30 16:37:57,628 - INFO - Training table: 6916 rows
+2026-03-30 16:37:57,700 - INFO - Projected by state/scenario: 545 rows
+2026-03-30 16:38:14,990 - INFO - Val RMSE: 1.4051 | Test RMSE: 2.1788 | Baseline: 6.0192
+2026-03-30 16:38:17,568 - INFO - Predictions complete: 1040 rows
+2026-03-30 16:38:18,055 - INFO - Choropleth saved to ../logs/price_impact_map.html
+2026-03-30 16:38:18,245 - INFO - Pipeline complete
+2026-03-30 23:38:06,529 - INFO - Pipeline started
+2026-03-30 23:38:12,772 - INFO - four tables loaded
+2026-03-30 23:38:13,051 - INFO - First 5 rows of retail_sales:
+    period stateid stateDescription sectorid   sectorName  customers  price  \
+0  2015-01      AK           Alaska      ALL  all sectors     331677  17.20   
+1  2015-01      AK           Alaska      COM   commercial      50308  16.88   
+2  2015-01      AK           Alaska      IND   industrial       1269  14.21   
+3  2015-01      AK           Alaska      OTH        other       <NA>    NaN   
+4  2015-01      AK           Alaska      RES  residential     280100  19.09   
+
+     revenue      sales      customers-units              price-units  \
+0  100.05842  581.79087  number of customers  cents per kilowatt-hour   
+1   42.30951  250.60023  number of customers  cents per kilowatt-hour   
+2   15.95628  112.25382  number of customers  cents per kilowatt-hour   
+3        NaN        NaN  number of customers  cents per kilowatt-hour   
+4   41.79263  218.93683  number of customers  cents per kilowatt-hour   
+
+     revenue-units             sales-units  
+0  million dollars  million kilowatt hours  
+1  million dollars  million kilowatt hours  
+2  million dollars  million kilowatt hours  
+3  million dollars  million kilowatt hours  
+4  million dollars  million kilowatt hours  
+2026-03-30 23:38:13,071 - INFO - Row count of retail_sales: 49476
+2026-03-30 23:38:13,088 - INFO - First 5 rows of renewable_gen:
+    period location stateDescription  sectorid sectorDescription fueltypeid  \
+0  2015-01       90          Pacific         1  Electric Utility        GEO   
+1  2015-01       90          Pacific         1  Electric Utility        HYC   
+2  2015-01       90          Pacific         1  Electric Utility        SUN   
+3  2015-01       90          Pacific         1  Electric Utility        WND   
+4  2015-01       90          Pacific         2       IPP Non-CHP        GEO   
+
+          fuelTypeDescription   generation        generation-units  
+0                  geothermal     71.01000  thousand megawatthours  
+1  conventional hydroelectric  13018.48468  thousand megawatthours  
+2                       solar     20.90664  thousand megawatthours  
+3                        wind    204.57043  thousand megawatthours  
+4                  geothermal   1009.18196  thousand megawatthours  
+2026-03-30 23:38:13,100 - INFO - Row count of renewable_gen: 179652
+2026-03-30 23:38:13,111 - INFO - First 5 rows of total_gen:
+    period location stateDescription  sectorid sectorDescription fueltypeid  \
+0  2015-01       90          Pacific         1  Electric Utility        ALL   
+1  2015-01       90          Pacific         1  Electric Utility        AOR   
+2  2015-01       90          Pacific         2       IPP Non-CHP        ALL   
+3  2015-01       90          Pacific         2       IPP Non-CHP        AOR   
+4  2015-01       90          Pacific         3           IPP CHP        ALL   
+
+  fuelTypeDescription   generation        generation-units  
+0           all fuels  20895.35436  thousand megawatthours  
+1      all renewables    374.59708  thousand megawatthours  
+2           all fuels   7080.29286  thousand megawatthours  
+3      all renewables   2581.26015  thousand megawatthours  
+4           all fuels   2110.66660  thousand megawatthours  
+2026-03-30 23:38:13,124 - INFO - Row count of total_gen: 194055
+2026-03-30 23:38:13,148 - INFO - First 5 rows of dc_current:
+            id           state state_abb state_id             county  \
+0  00002744301      New Jersey        NJ       34   Middlesex County   
+1  00009474864  North Carolina        NC       37    Caldwell County   
+2  00013924557            Iowa        IA       19        Polk County   
+3  00014593270  North Carolina        NC       37     Catawba County   
+4  00014930068      New Mexico        NM       35  Bernalillo County   
+
+  county_id                      operator  ref                        name  \
+0       023                           NaN  NaN                     Verizon   
+1       027                        Google  NaN          Google Data Center   
+2       153                     Microsoft  NaN            Project Alluvion   
+3       035                           NaN  NaN  Apple - Maiden Data Center   
+4       001  Sandia National Laboratories  880                         HPC   
+
+         sqft         lon        lat      type  
+0    105786.0  -74.496521  40.544256  building  
+1   3407194.0  -81.546515  35.894738    campus  
+2  11169421.0  -93.711830  41.515967    campus  
+3   5431080.0  -81.261809  35.588771    campus  
+4    158463.0 -106.542822  35.049942  building  
+2026-03-30 23:38:13,163 - INFO - Row count of dc_current: 1479
+2026-03-30 23:38:15,571 - INFO - Loaded dc_projected: 16645 rows
+2026-03-30 23:38:16,190 - INFO - DC by state: 47 states
+2026-03-30 23:38:16,301 - INFO - Training table: 6916 rows
+2026-03-30 23:38:16,380 - INFO - Projected by state/scenario: 545 rows
+2026-03-30 23:38:34,066 - INFO - Val RMSE: 1.3481 | Test RMSE: 1.2000 | Baseline: 1.2902
+2026-03-30 23:38:36,636 - INFO - Predictions complete: 1040 rows
+2026-03-30 23:38:37,575 - INFO - Choropleth saved to ../logs/price_impact_map.html
+2026-03-30 23:38:37,837 - INFO - Pipeline complete
+2026-03-30 23:46:48,116 - INFO - Pipeline started
+2026-03-30 23:46:51,900 - INFO - four tables loaded
+2026-03-30 23:46:51,930 - INFO - First 5 rows of retail_sales:
+    period stateid stateDescription sectorid   sectorName  customers  price  \
+0  2015-01      AK           Alaska      ALL  all sectors     331677  17.20   
+1  2015-01      AK           Alaska      COM   commercial      50308  16.88   
+2  2015-01      AK           Alaska      IND   industrial       1269  14.21   
+3  2015-01      AK           Alaska      OTH        other       <NA>    NaN   
+4  2015-01      AK           Alaska      RES  residential     280100  19.09   
+
+     revenue      sales      customers-units              price-units  \
+0  100.05842  581.79087  number of customers  cents per kilowatt-hour   
+1   42.30951  250.60023  number of customers  cents per kilowatt-hour   
+2   15.95628  112.25382  number of customers  cents per kilowatt-hour   
+3        NaN        NaN  number of customers  cents per kilowatt-hour   
+4   41.79263  218.93683  number of customers  cents per kilowatt-hour   
+
+     revenue-units             sales-units  
+0  million dollars  million kilowatt hours  
+1  million dollars  million kilowatt hours  
+2  million dollars  million kilowatt hours  
+3  million dollars  million kilowatt hours  
+4  million dollars  million kilowatt hours  
+2026-03-30 23:46:51,942 - INFO - Row count of retail_sales: 49476
+2026-03-30 23:46:51,953 - INFO - First 5 rows of renewable_gen:
+    period location stateDescription  sectorid sectorDescription fueltypeid  \
+0  2015-01       90          Pacific         1  Electric Utility        GEO   
+1  2015-01       90          Pacific         1  Electric Utility        HYC   
+2  2015-01       90          Pacific         1  Electric Utility        SUN   
+3  2015-01       90          Pacific         1  Electric Utility        WND   
+4  2015-01       90          Pacific         2       IPP Non-CHP        GEO   
+
+          fuelTypeDescription   generation        generation-units  
+0                  geothermal     71.01000  thousand megawatthours  
+1  conventional hydroelectric  13018.48468  thousand megawatthours  
+2                       solar     20.90664  thousand megawatthours  
+3                        wind    204.57043  thousand megawatthours  
+4                  geothermal   1009.18196  thousand megawatthours  
+2026-03-30 23:46:51,962 - INFO - Row count of renewable_gen: 179652
+2026-03-30 23:46:51,974 - INFO - First 5 rows of total_gen:
+    period location stateDescription  sectorid sectorDescription fueltypeid  \
+0  2015-01       90          Pacific         1  Electric Utility        ALL   
+1  2015-01       90          Pacific         1  Electric Utility        AOR   
+2  2015-01       90          Pacific         2       IPP Non-CHP        ALL   
+3  2015-01       90          Pacific         2       IPP Non-CHP        AOR   
+4  2015-01       90          Pacific         3           IPP CHP        ALL   
+
+  fuelTypeDescription   generation        generation-units  
+0           all fuels  20895.35436  thousand megawatthours  
+1      all renewables    374.59708  thousand megawatthours  
+2           all fuels   7080.29286  thousand megawatthours  
+3      all renewables   2581.26015  thousand megawatthours  
+4           all fuels   2110.66660  thousand megawatthours  
+2026-03-30 23:46:51,983 - INFO - Row count of total_gen: 194055
+2026-03-30 23:46:52,005 - INFO - First 5 rows of dc_current:
+            id           state state_abb state_id             county  \
+0  00002744301      New Jersey        NJ       34   Middlesex County   
+1  00009474864  North Carolina        NC       37    Caldwell County   
+2  00013924557            Iowa        IA       19        Polk County   
+3  00014593270  North Carolina        NC       37     Catawba County   
+4  00014930068      New Mexico        NM       35  Bernalillo County   
+
+  county_id                      operator  ref                        name  \
+0       023                           NaN  NaN                     Verizon   
+1       027                        Google  NaN          Google Data Center   
+2       153                     Microsoft  NaN            Project Alluvion   
+3       035                           NaN  NaN  Apple - Maiden Data Center   
+4       001  Sandia National Laboratories  880                         HPC   
+
+         sqft         lon        lat      type  
+0    105786.0  -74.496521  40.544256  building  
+1   3407194.0  -81.546515  35.894738    campus  
+2  11169421.0  -93.711830  41.515967    campus  
+3   5431080.0  -81.261809  35.588771    campus  
+4    158463.0 -106.542822  35.049942  building  
+2026-03-30 23:46:52,021 - INFO - Row count of dc_current: 1479
+2026-03-30 23:46:54,684 - INFO - Loaded dc_projected: 16645 rows
+2026-03-30 23:46:54,751 - INFO - DC by state: 47 states
+2026-03-30 23:46:54,822 - INFO - Training table: 6916 rows
+2026-03-30 23:46:54,953 - INFO - Projected by state/scenario: 545 rows
+2026-03-30 23:49:29,265 - INFO - Val RMSE: 2.3611 | Test RMSE: 2.9229 | Baseline: 6.0192
+2026-03-30 23:49:31,060 - INFO - Predictions complete: 1040 rows
+2026-03-30 23:49:31,406 - INFO - Choropleth saved to ../logs/price_impact_map.html
+2026-03-30 23:49:31,587 - INFO - Pipeline complete
+2026-03-31 00:10:51,549 - INFO - Pipeline started
+2026-03-31 00:10:55,208 - INFO - four tables loaded
+2026-03-31 00:10:55,276 - INFO - First 5 rows of retail_sales:
+    period stateid stateDescription sectorid   sectorName  customers  price  \
+0  2015-01      AK           Alaska      ALL  all sectors     331677  17.20   
+1  2015-01      AK           Alaska      COM   commercial      50308  16.88   
+2  2015-01      AK           Alaska      IND   industrial       1269  14.21   
+3  2015-01      AK           Alaska      OTH        other       <NA>    NaN   
+4  2015-01      AK           Alaska      RES  residential     280100  19.09   
+
+     revenue      sales      customers-units              price-units  \
+0  100.05842  581.79087  number of customers  cents per kilowatt-hour   
+1   42.30951  250.60023  number of customers  cents per kilowatt-hour   
+2   15.95628  112.25382  number of customers  cents per kilowatt-hour   
+3        NaN        NaN  number of customers  cents per kilowatt-hour   
+4   41.79263  218.93683  number of customers  cents per kilowatt-hour   
+
+     revenue-units             sales-units  
+0  million dollars  million kilowatt hours  
+1  million dollars  million kilowatt hours  
+2  million dollars  million kilowatt hours  
+3  million dollars  million kilowatt hours  
+4  million dollars  million kilowatt hours  
+2026-03-31 00:10:55,304 - INFO - Row count of retail_sales: 49476
+2026-03-31 00:10:55,320 - INFO - First 5 rows of renewable_gen:
+    period location stateDescription  sectorid sectorDescription fueltypeid  \
+0  2015-01       90          Pacific         1  Electric Utility        GEO   
+1  2015-01       90          Pacific         1  Electric Utility        HYC   
+2  2015-01       90          Pacific         1  Electric Utility        SUN   
+3  2015-01       90          Pacific         1  Electric Utility        WND   
+4  2015-01       90          Pacific         2       IPP Non-CHP        GEO   
+
+          fuelTypeDescription   generation        generation-units  
+0                  geothermal     71.01000  thousand megawatthours  
+1  conventional hydroelectric  13018.48468  thousand megawatthours  
+2                       solar     20.90664  thousand megawatthours  
+3                        wind    204.57043  thousand megawatthours  
+4                  geothermal   1009.18196  thousand megawatthours  
+2026-03-31 00:10:55,330 - INFO - Row count of renewable_gen: 179652
+2026-03-31 00:10:55,344 - INFO - First 5 rows of total_gen:
+    period location stateDescription  sectorid sectorDescription fueltypeid  \
+0  2015-01       90          Pacific         1  Electric Utility        ALL   
+1  2015-01       90          Pacific         1  Electric Utility        AOR   
+2  2015-01       90          Pacific         2       IPP Non-CHP        ALL   
+3  2015-01       90          Pacific         2       IPP Non-CHP        AOR   
+4  2015-01       90          Pacific         3           IPP CHP        ALL   
+
+  fuelTypeDescription   generation        generation-units  
+0           all fuels  20895.35436  thousand megawatthours  
+1      all renewables    374.59708  thousand megawatthours  
+2           all fuels   7080.29286  thousand megawatthours  
+3      all renewables   2581.26015  thousand megawatthours  
+4           all fuels   2110.66660  thousand megawatthours  
+2026-03-31 00:10:55,353 - INFO - Row count of total_gen: 194055
+2026-03-31 00:10:55,369 - INFO - First 5 rows of dc_current:
+            id           state state_abb state_id             county  \
+0  00002744301      New Jersey        NJ       34   Middlesex County   
+1  00009474864  North Carolina        NC       37    Caldwell County   
+2  00013924557            Iowa        IA       19        Polk County   
+3  00014593270  North Carolina        NC       37     Catawba County   
+4  00014930068      New Mexico        NM       35  Bernalillo County   
+
+  county_id                      operator  ref                        name  \
+0       023                           NaN  NaN                     Verizon   
+1       027                        Google  NaN          Google Data Center   
+2       153                     Microsoft  NaN            Project Alluvion   
+3       035                           NaN  NaN  Apple - Maiden Data Center   
+4       001  Sandia National Laboratories  880                         HPC   
+
+         sqft         lon        lat      type  
+0    105786.0  -74.496521  40.544256  building  
+1   3407194.0  -81.546515  35.894738    campus  
+2  11169421.0  -93.711830  41.515967    campus  
+3   5431080.0  -81.261809  35.588771    campus  
+4    158463.0 -106.542822  35.049942  building  
+2026-03-31 00:10:55,393 - INFO - Row count of dc_current: 1479
+2026-03-31 00:10:55,928 - INFO - Loaded dc_projected: 3329 rows
+2026-03-31 00:10:56,034 - INFO - DC by state: 47 states
+2026-03-31 00:10:56,265 - INFO - Training table: 6916 rows
+2026-03-31 00:10:56,399 - INFO - Projected by state/scenario: 109 rows
+2026-03-31 00:11:04,835 - INFO - Val RMSE: 2.3611 | Test RMSE: 2.9229 | Baseline: 6.0192
+2026-03-31 00:11:05,448 - INFO - Predictions complete: 208 rows
+2026-03-31 00:11:05,642 - INFO - Choropleth saved to ../logs/price_impact_map.html
+2026-03-31 00:11:05,725 - INFO - Pipeline complete
+2026-03-31 01:11:25,557 - INFO - pipeline started
+2026-03-31 01:11:29,233 - INFO - csv tables loaded into duckdb
+2026-03-31 01:11:29,946 - INFO - loaded dc_projected with 3329 rows
+2026-03-31 01:11:30,037 - INFO - dc_by_state: 47 states
+2026-03-31 01:11:30,120 - INFO - training table: 6916 rows
+2026-03-31 01:11:30,183 - INFO - projected_by_state: 109 rows
+2026-03-31 01:11:37,788 - INFO - test rmse: 2.9229 | baseline: 6.0192
+2026-03-31 01:11:38,732 - INFO - predictions complete: 208 rows
+2026-03-31 01:11:39,122 - INFO - choropleth saved
+2026-03-31 01:11:39,296 - INFO - pipeline complete
+2026-03-31 11:37:49,472 - INFO - training table: 6916 rows
+2026-03-31 11:41:35,218 - INFO - projected_by_state: 109 rows
+2026-03-31 12:20:10,354 INFO pipeline started
+2026-03-31 12:20:12,178 INFO csv tables loaded into duckdb
+2026-03-31 12:20:12,550 INFO loaded dc_projected with 3329 rows
+2026-03-31 12:20:12,666 INFO dc_by_state: 47 states
+2026-03-31 12:20:12,768 INFO training table: 6916 rows
+2026-03-31 12:20:12,865 INFO projected_by_state: 109 rows
+2026-03-31 12:22:37,529 INFO pipeline started
+2026-03-31 12:22:39,315 INFO csv tables loaded into duckdb
+2026-03-31 12:22:39,581 INFO loaded dc_projected with 3329 rows
+2026-03-31 12:22:39,652 INFO dc_by_state: 47 states
+2026-03-31 12:22:39,732 INFO training table: 6916 rows
+2026-03-31 12:22:39,792 INFO projected_by_state: 109 rows
+2026-03-31 15:54:04,923 INFO pipeline started
+2026-03-31 15:54:05,777 INFO csv tables loaded into duckdb
+2026-03-31 15:54:05,934 INFO loaded dc_projected with 3329 rows
+2026-03-31 15:54:05,994 INFO dc_by_state: 47 states
+2026-03-31 15:54:06,062 INFO training table: 6916 rows
+2026-03-31 15:54:06,120 INFO projected_by_state: 109 rows
+2026-03-31 16:00:15,713 INFO pipeline started
+2026-03-31 16:00:16,591 INFO csv tables loaded into duckdb
+2026-03-31 16:00:16,712 INFO loaded dc_projected with 3329 rows
+2026-03-31 16:00:16,739 INFO dc_by_state: 47 states
+2026-03-31 16:00:16,782 INFO training table: 6916 rows
+2026-03-31 16:00:16,826 INFO projected_by_state: 109 rows
+2026-03-31 16:03:17,178 INFO pipeline started
+2026-03-31 16:03:18,022 INFO csv tables loaded into duckdb
+2026-03-31 16:03:18,218 INFO loaded dc_projected with 3329 rows
+2026-03-31 16:03:18,246 INFO dc_by_state: 47 states
+2026-03-31 16:03:18,293 INFO training table: 6916 rows
+2026-03-31 16:03:18,339 INFO projected_by_state: 109 rows
+2026-03-31 16:03:37,436 INFO final model trained: best iteration 142
+2026-03-31 16:03:37,658 INFO val rmse: 2.3160 | test rmse: 2.8712 | baseline: 6.0192
+2026-03-31 16:03:38,257 INFO predictions complete: 208 rows
+2026-03-31 16:03:38,436 INFO choropleth saved
+2026-03-31 16:03:38,611 INFO pipeline complete
+2026-03-31 16:12:07,791 INFO pipeline started
+2026-03-31 16:12:09,406 INFO csv tables loaded into duckdb
+2026-03-31 16:12:09,736 INFO loaded dc_projected with 3329 rows
+2026-03-31 16:12:09,928 INFO dc_by_state: 47 states
+2026-03-31 16:12:10,146 INFO training table: 6916 rows
+2026-03-31 16:12:10,232 INFO projected_by_state: 109 rows
+2026-03-31 16:20:59,007 INFO final model trained: best iteration 249
+2026-03-31 16:21:56,764 INFO val rmse: 2.7805 | test rmse: 3.5647 | baseline: 6.1046
+2026-03-31 16:23:56,904 INFO predictions complete: 208 rows
+2026-03-31 16:24:20,808 INFO choropleth saved
+2026-03-31 16:24:20,957 INFO pipeline complete
+2026-03-31 17:14:16,368 INFO pipeline started
+2026-03-31 17:14:16,960 INFO csv tables loaded into duckdb
+2026-03-31 17:14:17,155 INFO loaded dc_projected with 3329 rows
+2026-03-31 17:14:17,218 INFO dc_by_state: 47 states
+2026-03-31 17:14:17,280 INFO training table: 6916 rows
+2026-03-31 17:14:17,320 INFO projected_by_state: 109 rows
+2026-03-31 17:28:21,618 INFO final model trained: best iteration 287
+2026-03-31 17:28:21,726 INFO val rmse: 2.7923 | test rmse: 3.5780 | baseline: 6.1046
+2026-03-31 17:28:22,201 INFO predictions complete: 208 rows
+2026-03-31 17:28:22,876 INFO choropleth saved
+2026-03-31 17:28:22,951 INFO pipeline complete
+2026-03-31 18:04:39,270 INFO pipeline started
+2026-03-31 18:04:40,034 INFO csv tables loaded into duckdb
+2026-03-31 18:04:40,223 INFO loaded dc_projected with 3329 rows
+2026-03-31 18:04:40,263 INFO dc_by_state: 47 states
+2026-03-31 18:04:40,324 INFO training table: 6916 rows
+2026-03-31 18:04:40,379 INFO projected_by_state: 109 rows
+2026-03-31 19:01:29,391 INFO final model trained: best iteration 287
+2026-03-31 19:01:29,689 INFO val rmse: 2.7923 | test rmse: 3.5780 | baseline: 6.1046
+2026-03-31 19:01:30,372 INFO predictions complete: 208 rows
+2026-03-31 19:01:30,648 INFO choropleth saved
+2026-03-31 19:01:30,950 INFO pipeline complete
+2026-03-31 19:06:26,875 INFO pipeline started
+2026-03-31 19:06:29,445 INFO csv tables loaded into duckdb
+2026-03-31 19:06:29,780 INFO loaded dc_projected with 3329 rows
+2026-03-31 19:06:29,885 INFO dc_by_state: 47 states
+2026-03-31 19:06:30,066 INFO training table: 6916 rows
+2026-03-31 19:06:30,131 INFO projected_by_state: 109 rows
+2026-03-31 19:08:16,053 INFO final model trained: best iteration 440
+2026-03-31 19:08:16,297 INFO val rmse: 2.1914 | test rmse: 3.1052 | baseline: 6.1046
+2026-03-31 19:08:16,969 INFO predictions complete: 208 rows
+2026-03-31 19:08:17,118 INFO choropleth saved
+2026-03-31 19:08:17,255 INFO pipeline complete
+2026-03-31 19:10:21,137 INFO pipeline started
+2026-03-31 19:10:22,020 INFO csv tables loaded into duckdb
+2026-03-31 19:10:22,191 INFO loaded dc_projected with 3329 rows
+2026-03-31 19:10:22,277 INFO dc_by_state: 47 states
+2026-03-31 19:10:22,354 INFO training table: 6916 rows
+2026-03-31 19:10:22,435 INFO projected_by_state: 109 rows
+2026-03-31 19:12:10,614 INFO final model trained: best iteration 449
+2026-03-31 19:12:10,835 INFO val rmse: 1.3713 | test rmse: 2.1633 | baseline: 6.0192
+2026-03-31 19:12:11,468 INFO predictions complete: 208 rows
+2026-03-31 19:12:11,649 INFO choropleth saved
+2026-03-31 19:12:11,758 INFO pipeline complete
+2026-03-31 19:18:55,895 INFO pipeline started
+2026-03-31 19:18:57,197 INFO csv tables loaded into duckdb
+2026-03-31 19:18:57,546 INFO loaded dc_projected with 3329 rows
+2026-03-31 19:18:57,610 INFO dc_by_state: 47 states
+2026-03-31 19:18:57,718 INFO training table: 6916 rows
+2026-03-31 19:18:57,789 INFO projected_by_state: 109 rows
+2026-03-31 19:20:17,625 INFO final model trained: best iteration 449
+2026-03-31 19:20:17,750 INFO bias correction: 0.2743
+2026-03-31 19:20:17,792 INFO val rmse: 1.3713 | test rmse: 2.0632 | baseline: 6.0192
+2026-03-31 19:20:18,435 INFO predictions complete: 208 rows
+2026-03-31 19:20:18,632 INFO choropleth saved
+2026-03-31 19:20:18,765 INFO pipeline complete
+2026-03-31 19:21:10,785 INFO pipeline started
+2026-03-31 19:21:11,499 INFO csv tables loaded into duckdb
+2026-03-31 19:21:11,643 INFO loaded dc_projected with 3329 rows
+2026-03-31 19:21:11,698 INFO dc_by_state: 47 states
+2026-03-31 19:21:11,767 INFO training table: 6916 rows
+2026-03-31 19:21:11,817 INFO projected_by_state: 109 rows
+2026-03-31 19:23:47,201 INFO final model trained: best iteration 449
+2026-03-31 19:23:47,364 INFO bias correction: 0.2743
+2026-03-31 19:23:47,413 INFO val rmse: 1.3713 | test rmse: 2.0632 | baseline: 6.0192
+2026-03-31 19:23:48,032 INFO predictions complete: 208 rows
+2026-03-31 19:23:48,209 INFO choropleth saved
+2026-03-31 19:23:48,365 INFO pipeline complete
+2026-03-31 19:31:32,989 INFO pipeline started
+2026-03-31 19:31:33,801 INFO csv tables loaded into duckdb
+2026-03-31 19:31:33,976 INFO loaded dc_projected with 3329 rows
+2026-03-31 19:31:34,036 INFO dc_by_state: 47 states
+2026-03-31 19:31:34,162 INFO training table: 6916 rows
+2026-03-31 19:31:34,223 INFO projected_by_state: 109 rows
+2026-03-31 19:33:58,221 INFO final model trained: best iteration 449
+2026-03-31 19:33:58,605 INFO val rmse: 1.3713 | test rmse: 1.9287 | baseline: 6.0192
+2026-03-31 19:33:59,308 INFO predictions complete: 208 rows
+2026-03-31 19:33:59,528 INFO choropleth saved
+2026-03-31 19:33:59,676 INFO pipeline complete
+2026-03-31 20:34:06,950 INFO pipeline started
+2026-03-31 20:34:07,684 INFO csv tables loaded into duckdb
+2026-03-31 20:34:07,907 INFO loaded dc_projected with 3329 rows
+2026-03-31 20:34:07,979 INFO dc_by_state: 47 states
+2026-03-31 20:34:08,120 INFO training table: 6916 rows
+2026-03-31 20:34:08,211 INFO projected_by_state: 109 rows
+2026-03-31 20:52:15,626 INFO pipeline started
+2026-03-31 20:52:18,318 INFO csv tables loaded into duckdb
+2026-03-31 20:52:18,715 INFO loaded dc_projected with 3329 rows
+2026-03-31 20:52:18,855 INFO dc_by_state: 47 states
+2026-03-31 20:52:18,988 INFO training table: 6916 rows
+2026-03-31 20:52:19,170 INFO projected_by_state: 109 rows
+2026-03-31 20:54:33,582 INFO pipeline started
+2026-03-31 20:54:37,378 INFO csv tables loaded into duckdb
+2026-03-31 20:54:38,343 INFO loaded dc_projected with 3329 rows
+2026-03-31 20:54:38,895 INFO dc_by_state: 47 states
+2026-03-31 20:54:39,102 INFO training table: 6916 rows
+2026-03-31 20:54:39,295 INFO projected_by_state: 109 rows
+2026-03-31 20:58:40,928 INFO pipeline started
+2026-03-31 20:58:42,033 INFO csv tables loaded into duckdb
+2026-03-31 20:58:42,261 INFO loaded dc_projected with 3329 rows
+2026-03-31 20:58:42,302 INFO dc_by_state: 47 states
+2026-03-31 20:58:42,384 INFO training table: 6916 rows
+2026-03-31 20:58:42,482 INFO projected_by_state: 109 rows
+2026-03-31 21:05:22,027 INFO pipeline started
+2026-03-31 21:05:24,711 INFO csv tables loaded into duckdb
+2026-03-31 21:05:25,157 INFO loaded dc_projected with 3329 rows
+2026-03-31 21:05:25,237 INFO dc_by_state: 47 states
+2026-03-31 21:05:25,433 INFO training table: 6916 rows
+2026-03-31 21:05:25,556 INFO projected_by_state: 109 rows
+2026-03-31 21:10:52,850 INFO pipeline started
+2026-03-31 21:10:54,139 INFO csv tables loaded into duckdb
+2026-03-31 21:10:54,427 INFO loaded dc_projected with 3329 rows
+2026-03-31 21:10:54,474 INFO dc_by_state: 47 states
+2026-03-31 21:10:54,634 INFO training table: 6916 rows
+2026-03-31 21:10:54,720 INFO projected_by_state: 109 rows
+2026-03-31 21:18:00,938 INFO pipeline started
+2026-03-31 21:18:03,307 INFO csv tables loaded into duckdb
+2026-03-31 21:18:03,889 INFO loaded dc_projected with 3329 rows
+2026-03-31 21:18:04,005 INFO dc_by_state: 47 states
+2026-03-31 21:18:04,128 INFO training table: 6916 rows
+2026-03-31 21:18:04,235 INFO projected_by_state: 109 rows
+2026-03-31 21:26:48,294 INFO pipeline started
+2026-03-31 21:26:49,285 INFO csv tables loaded into duckdb
+2026-03-31 21:26:49,522 INFO loaded dc_projected with 3329 rows
+2026-03-31 21:26:49,558 INFO dc_by_state: 47 states
+2026-03-31 21:26:49,630 INFO training table: 6916 rows
+2026-03-31 21:26:49,700 INFO projected_by_state: 109 rows
+2026-03-31 21:29:08,369 INFO pipeline started
+2026-03-31 21:29:10,167 INFO csv tables loaded into duckdb
+2026-03-31 21:29:10,438 INFO loaded dc_projected with 3329 rows
+2026-03-31 21:29:10,515 INFO dc_by_state: 47 states
+2026-03-31 21:29:10,611 INFO training table: 6916 rows
+2026-03-31 21:29:10,684 INFO projected_by_state: 109 rows
+2026-03-31 21:30:39,646 INFO final model trained: best iteration 449
+2026-03-31 21:30:39,717 INFO bias correction: 0.9085
+2026-03-31 21:30:39,741 INFO val rmse: 1.3713 | test rmse: 1.9636 | baseline: 6.0192
+2026-03-31 21:30:40,394 INFO predictions complete: 208 rows
+2026-03-31 21:30:40,752 INFO choropleth saved
+2026-03-31 21:30:40,888 INFO pipeline complete
+2026-03-31 21:35:57,213 INFO pipeline started
+2026-03-31 21:35:57,814 INFO csv tables loaded into duckdb
+2026-03-31 21:35:57,973 INFO loaded dc_projected with 3329 rows
+2026-03-31 21:35:58,004 INFO dc_by_state: 47 states
+2026-03-31 21:35:58,065 INFO training table: 6916 rows
+2026-03-31 21:35:58,130 INFO projected_by_state: 109 rows
+2026-03-31 21:36:37,911 INFO final model trained: best iteration 449
+2026-03-31 21:36:37,943 INFO bias correction: 1.7900
+2026-03-31 21:36:37,967 INFO val rmse: 1.3713 | test rmse: 2.1527 | baseline: 6.0192
+2026-03-31 21:36:38,333 INFO predictions complete: 208 rows
+2026-03-31 21:36:38,560 INFO choropleth saved
+2026-03-31 21:36:38,702 INFO pipeline complete
+2026-03-31 21:39:56,690 INFO pipeline started
+2026-03-31 21:39:57,700 INFO csv tables loaded into duckdb
+2026-03-31 21:39:57,955 INFO loaded dc_projected with 3329 rows
+2026-03-31 21:39:57,996 INFO dc_by_state: 47 states
+2026-03-31 21:39:58,100 INFO training table: 6916 rows
+2026-03-31 21:39:58,167 INFO projected_by_state: 109 rows
+2026-03-31 21:40:38,618 INFO final model trained: best iteration 202
+2026-03-31 21:40:38,657 INFO bias correction: 3.8373
+2026-03-31 21:40:38,678 INFO val rmse: 2.4128 | test rmse: 2.8041 | baseline: 6.0192
+2026-03-31 21:40:39,123 INFO predictions complete: 208 rows
+2026-03-31 21:40:39,331 INFO choropleth saved
+2026-03-31 21:40:39,416 INFO pipeline complete
+2026-03-31 21:44:27,572 INFO pipeline started
+2026-03-31 21:44:28,136 INFO csv tables loaded into duckdb
+2026-03-31 21:44:28,265 INFO loaded dc_projected with 3329 rows
+2026-03-31 21:44:28,290 INFO dc_by_state: 47 states
+2026-03-31 21:44:28,337 INFO training table: 6916 rows
+2026-03-31 21:44:28,380 INFO projected_by_state: 109 rows
+2026-03-31 21:44:58,052 INFO final model trained: best iteration 449
+2026-03-31 21:45:43,243 INFO trend per year: 0.2055 | bias: 0.9085
+2026-03-31 21:45:43,246 INFO val rmse: 1.3713 | test rmse: 2.0091 | baseline: 6.0192
+2026-03-31 21:45:43,449 INFO predictions complete: 208 rows
+2026-03-31 21:45:43,606 INFO choropleth saved
+2026-03-31 21:45:43,852 INFO pipeline complete
+2026-03-31 23:14:55,230 INFO pipeline started
+2026-03-31 23:14:56,661 INFO csv tables loaded into duckdb
+2026-03-31 23:14:57,025 INFO loaded dc_projected with 3329 rows
+2026-03-31 23:14:57,134 INFO dc_by_state: 47 states
+2026-03-31 23:14:57,227 INFO training table: 6916 rows
+2026-03-31 23:14:57,431 INFO projected_by_state: 109 rows
+2026-03-31 23:15:36,429 INFO final model trained: best iteration 449
+2026-03-31 23:15:36,641 INFO trend per year: 0.2055 | bias: 0.9085
+2026-03-31 23:15:36,650 INFO val rmse: 1.3713 | test rmse: 2.0091 | baseline: 6.0192
+2026-03-31 23:15:37,081 INFO predictions complete: 208 rows
+2026-03-31 23:15:37,473 INFO choropleth saved
+2026-03-31 23:15:37,672 INFO Chromium init'ed with kwargs {}
+2026-03-31 23:15:37,920 INFO Found chromium path: /usr/bin/google-chrome
+2026-03-31 23:15:37,922 INFO Temp directory created: /tmp/tmpu1wxwv_f.
+2026-03-31 23:15:37,922 INFO Opening browser.
+2026-03-31 23:15:37,924 INFO Temp directory created: /tmp/tmpgsd3fzk9.
+2026-03-31 23:15:37,940 INFO ldd failed. e: Command '['ldd', '/usr/bin/google-chrome']' returned non-zero exit status 1., stderr: None
+2026-03-31 23:15:37,940 INFO Temporary directory at: /tmp/tmpgsd3fzk9
+2026-03-31 23:15:39,812 INFO Conforming 1 to file:///tmp/tmpu1wxwv_f/index.html
+2026-03-31 23:15:39,813 INFO Waiting on all navigates
+2026-03-31 23:15:43,537 INFO All navigates done, putting them all in queue.
+2026-03-31 23:15:43,540 INFO Getting tab from queue (has 1)
+2026-03-31 23:15:43,540 INFO Got B71C
+2026-03-31 23:15:43,541 INFO Processing price_change_by_state_and_growth_scenario_cents_per_kwh.png
+2026-03-31 23:15:43,541 INFO Sending big command for price_change_by_state_and_growth_scenario_cents_per_kwh.png.
+2026-03-31 23:15:44,057 INFO Sent big command for price_change_by_state_and_growth_scenario_cents_per_kwh.png.
+2026-03-31 23:15:44,061 INFO Reloading tab B71C before return.
+2026-03-31 23:15:44,365 INFO Putting tab B71C back (queue size: 0).
+2026-03-31 23:15:44,365 INFO Waiting for all cleanups to finish.
+2026-03-31 23:15:44,365 INFO Exiting Kaleido
+2026-03-31 23:15:44,365 INFO Closing browser.
+2026-03-31 23:15:44,370 INFO Closing browser.
+2026-03-31 23:15:44,372 INFO TemporaryDirectory.cleanup() worked.
+2026-03-31 23:15:44,372 INFO shutil.rmtree worked.
+2026-03-31 23:15:44,372 INFO Cancelling tasks.
+2026-03-31 23:15:44,372 INFO Exiting Kaleido/Choreo
+2026-03-31 23:15:44,675 INFO TemporaryDirectory.cleanup() worked.
+2026-03-31 23:15:44,675 INFO shutil.rmtree worked.
+2026-03-31 23:15:44,676 INFO TemporaryDirectory.cleanup() worked.
+2026-03-31 23:15:44,677 INFO shutil.rmtree worked.
+2026-03-31 23:15:44,677 INFO Cancelling tasks.
+2026-03-31 23:15:44,677 INFO Exiting Kaleido/Choreo
+2026-03-31 23:15:44,686 INFO pipeline complete
+2026-03-31 23:43:05,839 INFO TemporaryDirectory.cleanup() worked.
+2026-03-31 23:43:05,839 INFO shutil.rmtree worked.
+2026-03-31 23:43:05,844 INFO Chromium init'ed with kwargs {}
+2026-03-31 23:43:05,928 INFO Found chromium path: /usr/bin/google-chrome
+2026-03-31 23:43:05,931 INFO Temp directory created: /tmp/tmp5919sna7.
+2026-03-31 23:43:05,932 INFO Opening browser.
+2026-03-31 23:43:05,933 INFO Temp directory created: /tmp/tmp1l1w6m6n.
+2026-03-31 23:43:05,943 INFO ldd failed. e: Command '['ldd', '/usr/bin/google-chrome']' returned non-zero exit status 1., stderr: None
+2026-03-31 23:43:05,943 INFO Temporary directory at: /tmp/tmp1l1w6m6n
+2026-03-31 23:43:06,961 INFO Conforming 1 to file:///tmp/tmp5919sna7/index.html
+2026-03-31 23:43:06,963 INFO Waiting on all navigates
+2026-03-31 23:43:11,028 INFO All navigates done, putting them all in queue.
+2026-03-31 23:43:11,029 INFO Getting tab from queue (has 1)
+2026-03-31 23:43:11,030 INFO Got 2FD4
+2026-03-31 23:43:11,030 INFO Processing price_change_by_state_and_growth_scenario_cents_per_kwh.png
+2026-03-31 23:43:11,030 INFO Sending big command for price_change_by_state_and_growth_scenario_cents_per_kwh.png.
+2026-03-31 23:43:11,329 INFO Sent big command for price_change_by_state_and_growth_scenario_cents_per_kwh.png.
+2026-03-31 23:43:11,331 INFO Reloading tab 2FD4 before return.
+2026-03-31 23:43:11,478 INFO Putting tab 2FD4 back (queue size: 0).
+2026-03-31 23:43:11,478 INFO Waiting for all cleanups to finish.
+2026-03-31 23:43:11,478 INFO Exiting Kaleido
+2026-03-31 23:43:11,479 INFO Closing browser.
+2026-03-31 23:43:11,481 INFO Closing browser.
+2026-03-31 23:43:11,483 INFO TemporaryDirectory.cleanup() worked.
+2026-03-31 23:43:11,483 INFO shutil.rmtree worked.
+2026-03-31 23:43:11,483 INFO Cancelling tasks.
+2026-03-31 23:43:11,483 INFO Exiting Kaleido/Choreo
+2026-03-31 23:43:11,656 INFO TemporaryDirectory.cleanup() worked.
+2026-03-31 23:43:11,656 INFO shutil.rmtree worked.
+2026-03-31 23:43:11,656 INFO TemporaryDirectory.cleanup() worked.
+2026-03-31 23:43:11,657 INFO shutil.rmtree worked.
+2026-03-31 23:43:11,657 INFO Cancelling tasks.
+2026-03-31 23:43:11,657 INFO Exiting Kaleido/Choreo
+2026-03-31 23:43:11,661 INFO TemporaryDirectory.cleanup() worked.
+2026-03-31 23:43:11,662 INFO shutil.rmtree worked.
+2026-03-31 23:43:11,666 INFO pipeline complete
+2026-03-31 23:53:53,840 INFO pipeline started
+2026-03-31 23:53:54,580 INFO csv tables loaded into duckdb
+2026-03-31 23:54:56,195 INFO pipeline started
+2026-03-31 23:54:56,765 INFO csv tables loaded into duckdb
+2026-03-31 23:54:56,957 INFO loaded dc_projected with 3329 rows
+2026-03-31 23:54:57,016 INFO dc_by_state: 47 states
+2026-03-31 23:54:57,133 INFO training table: 6916 rows
+2026-03-31 23:54:57,251 INFO projected_by_state: 109 rows
+2026-03-31 23:55:37,761 INFO final model trained: best iteration 449
+2026-03-31 23:55:38,033 INFO trend per year: 0.2055 | bias: 0.9085
+2026-03-31 23:55:38,045 INFO val rmse: 1.3713 | test rmse: 2.0091 | baseline: 6.0192
+2026-03-31 23:55:38,804 INFO predictions complete: 208 rows
+2026-03-31 23:55:39,170 INFO choropleth saved
+2026-03-31 23:55:39,315 INFO Chromium init'ed with kwargs {}
+2026-03-31 23:55:39,536 INFO Found chromium path: /usr/bin/google-chrome
+2026-03-31 23:55:39,537 INFO Temp directory created: /tmp/tmp9wybc0rc.
+2026-03-31 23:55:39,538 INFO Opening browser.
+2026-03-31 23:55:39,540 INFO Temp directory created: /tmp/tmplg3stmas.
+2026-03-31 23:55:39,552 INFO ldd failed. e: Command '['ldd', '/usr/bin/google-chrome']' returned non-zero exit status 1., stderr: None
+2026-03-31 23:55:39,553 INFO Temporary directory at: /tmp/tmplg3stmas
+2026-03-31 23:55:40,071 INFO Conforming 1 to file:///tmp/tmp9wybc0rc/index.html
+2026-03-31 23:55:40,072 INFO Waiting on all navigates
+2026-03-31 23:55:44,398 INFO All navigates done, putting them all in queue.
+2026-03-31 23:55:44,400 INFO Getting tab from queue (has 1)
+2026-03-31 23:55:44,400 INFO Got 1CD1
+2026-03-31 23:55:44,400 INFO Processing price_change_by_state_and_growth_scenario_cents_per_kwh.png
+2026-03-31 23:55:44,400 INFO Sending big command for price_change_by_state_and_growth_scenario_cents_per_kwh.png.
+2026-03-31 23:55:45,309 INFO Sent big command for price_change_by_state_and_growth_scenario_cents_per_kwh.png.
+2026-03-31 23:55:45,314 INFO Reloading tab 1CD1 before return.
+2026-03-31 23:55:45,793 INFO Putting tab 1CD1 back (queue size: 0).
+2026-03-31 23:55:45,794 INFO Waiting for all cleanups to finish.
+2026-03-31 23:55:45,794 INFO Exiting Kaleido
+2026-03-31 23:55:45,794 INFO Closing browser.
+2026-03-31 23:55:45,806 INFO Closing browser.
+2026-03-31 23:55:45,808 INFO TemporaryDirectory.cleanup() worked.
+2026-03-31 23:55:45,809 INFO shutil.rmtree worked.
+2026-03-31 23:55:45,809 INFO Cancelling tasks.
+2026-03-31 23:55:45,809 INFO Exiting Kaleido/Choreo
+2026-03-31 23:55:46,133 INFO TemporaryDirectory.cleanup() worked.
+2026-03-31 23:55:46,133 INFO shutil.rmtree worked.
+2026-03-31 23:55:46,134 INFO TemporaryDirectory.cleanup() worked.
+2026-03-31 23:55:46,135 INFO shutil.rmtree worked.
+2026-03-31 23:55:46,136 INFO Cancelling tasks.
+2026-03-31 23:55:46,136 INFO Exiting Kaleido/Choreo
+2026-03-31 23:55:46,144 INFO TemporaryDirectory.cleanup() worked.
+2026-03-31 23:55:46,145 INFO shutil.rmtree worked.
+2026-03-31 23:55:46,151 INFO pipeline complete

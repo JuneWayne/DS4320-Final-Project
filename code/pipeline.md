@@ -22,13 +22,13 @@ import os
 import logging
 import itertools
 import numpy as np
+import matplotlib.pyplot as plt
 import plotly.express as px
 from tqdm import tqdm
 from xgboost import XGBRegressor
 from sklearn.preprocessing import LabelEncoder
 from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
 
-# create a logs folder if it does not exist, then start logging
 os.makedirs('../logs', exist_ok=True)
 logging.basicConfig(
     filename='../logs/pipeline.log',
@@ -56,12 +56,16 @@ print('setup complete')
 con = duckdb.connect()
 
 # load each csv file as a table so we can query it with sql
-con.execute("CREATE TABLE retail_sales AS SELECT * FROM read_csv_auto('../data/eia_retail_sales_2015_2026.csv')")
-con.execute("CREATE TABLE renewable_gen AS SELECT * FROM read_csv_auto('../data/eia_renewable_generation_2015_2026.csv')")
-con.execute("CREATE TABLE total_gen AS SELECT * FROM read_csv_auto('../data/eia_total_generation_2015_2026.csv')")
-con.execute("CREATE TABLE dc_current AS SELECT * FROM read_csv_auto('../data/im3_open_source_data_center_atlas_v2026.02.09/im3_open_source_data_center_atlas_v2026.02.09.csv')")
-
-logging.info('csv tables loaded into duckdb')
+# wrapped in try/except so a missing or renamed file raises a clear error message
+try:
+    con.execute("CREATE TABLE retail_sales AS SELECT * FROM read_csv_auto('../data/eia_retail_sales_2015_2026.csv')")
+    con.execute("CREATE TABLE renewable_gen AS SELECT * FROM read_csv_auto('../data/eia_renewable_generation_2015_2026.csv')")
+    con.execute("CREATE TABLE total_gen AS SELECT * FROM read_csv_auto('../data/eia_total_generation_2015_2026.csv')")
+    con.execute("CREATE TABLE dc_current AS SELECT * FROM read_csv_auto('../data/im3_open_source_data_center_atlas_v2026.02.09/im3_open_source_data_center_atlas_v2026.02.09.csv')")
+    logging.info('csv tables loaded into duckdb')
+except Exception as e:
+    logging.error(f'failed to load csv files into duckdb: {e}')
+    raise
 
 # print row counts so we can confirm each table loaded correctly
 for table in ['retail_sales', 'renewable_gen', 'total_gen', 'dc_current']:
@@ -94,29 +98,31 @@ STATE_MAP = {
     'virginia':'VA','washington':'WA','west virginia':'WV','wisconsin':'WI','wyoming':'WY'
 }
 
-# the dataset has 5 'market gravity weights' but they all produce the same state-level megawatts totals
-# gravity only affects which county within a state gets each data center, not the state total production of megawatts energy
-# so we just load the 50 percent gravity files, one per growth scenario (technically makes no difference for which market gravity we choose)
+# the dataset has 5 market gravity weights but they all produce the same state-level mw totals
+# gravity only affects which county within a state gets each data center, not the state total
+# so we just load the 50 percent gravity files, one per growth scenario
 geojson_files = glob.glob('../data/im3_projected_data_centers_v1.1/**/*.geojson', recursive=True)
 geojson_files = [f for f in geojson_files if '_50_market_gravity' in f]
 
 records = []
-for filepath in geojson_files:
-    with open(filepath) as f:
-        data = json.load(f)
-    for feature in data['features']:
-        p = feature['properties']
-        records.append({
-            'growth_scenario': p['growth_scenario'],
-            'state_abb':       STATE_MAP.get(p['region'].lower()),
-            'dc_mw':           p['data_center_it_power_mw'],
-            'sqft':            p['campus_size_square_ft']
-        })
-
-dc_projected = pd.DataFrame(records)
-
-# register the dataframe as a duckdb table so we can query it with sql
-con.register('dc_projected', dc_projected)
+# wrapped in try/except so a corrupted or missing geojson file raises a clear error
+try:
+    for filepath in geojson_files:
+        with open(filepath) as f:
+            data = json.load(f)
+        for feature in data['features']:
+            p = feature['properties']
+            records.append({
+                'growth_scenario': p['growth_scenario'],
+                'state_abb':       STATE_MAP.get(p['region'].lower()),
+                'dc_mw':           p['data_center_it_power_mw'],
+                'sqft':            p['campus_size_square_ft']
+            })
+    dc_projected = pd.DataFrame(records)
+    con.register('dc_projected', dc_projected)
+except Exception as e:
+    logging.error(f'failed to load geojson files: {e}')
+    raise
 
 logging.info(f'loaded dc_projected with {len(dc_projected)} rows')
 print(f'projected dc table: {len(dc_projected):,} rows')
@@ -822,7 +828,6 @@ trains the final model with the best parameters from grid search. the loss curve
 
 
 ```python
-# train the final model using the best parameters found by grid search
 model = XGBRegressor(
     n_estimators=500,
     early_stopping_rounds=30,
@@ -837,7 +842,6 @@ model.fit(
     verbose=False
 )
 
-# xgboost stores per-iteration rmse in evals_result_ after fitting
 train_loss = model.evals_result_['validation_0']['rmse']
 val_loss = model.evals_result_['validation_1']['rmse']
 
@@ -845,7 +849,6 @@ print(f'best iteration: {model.best_iteration}')
 print(f'final train rmse: {train_loss[model.best_iteration]:.4f}')
 print(f'final val rmse:   {val_loss[model.best_iteration]:.4f}')
 
-# plot training vs validation loss over every boosting round
 iterations = list(range(len(train_loss)))
 loss_df = pd.DataFrame({
     'iteration': iterations + iterations,
@@ -867,7 +870,20 @@ fig_loss.add_vline(
     line_color='gray',
     annotation_text='best iteration'
 )
+fig_loss.write_html('../logs/loss_curve.html', include_plotlyjs='cdn')
 fig_loss.show()
+
+plt.figure(figsize=(8, 4))
+plt.plot(iterations, train_loss, label='train')
+plt.plot(iterations, val_loss, label='validation')
+plt.axvline(model.best_iteration, color='gray', linestyle='--')
+plt.title('training vs validation loss')
+plt.xlabel('boosting round')
+plt.ylabel('rmse (cents per kwh)')
+plt.legend()
+plt.tight_layout()
+plt.show()
+
 logging.info(f'final model trained: best iteration {model.best_iteration}')
 ```
 
@@ -876,6 +892,12 @@ logging.info(f'final model trained: best iteration {model.best_iteration}')
     final val rmse:   1.3713
 
 
+
+
+
+    
+![png](pipeline_export_files/pipeline_export_18_2.png)
+    
 
 
 ## Measuring Model Accuracy
@@ -891,7 +913,6 @@ also shows residual and actual vs predicted scatter plots.
 
 
 ```python
-# evaluate on validation set first (2023)
 val_pred = model.predict(X_val)
 val_rmse = np.sqrt(mean_squared_error(y_val, val_pred))
 val_mae = mean_absolute_error(y_val, val_pred)
@@ -904,9 +925,6 @@ print(f'mae: {val_mae:.4f} cents per kwh')
 print(f'r2: {val_r2:.4f}')
 print(f'mape: {val_mape:.2f}%')
 
-# xgboost trees cannot extrapolate: year values beyond 2022 get capped at the 2022 leaf value
-# fix: estimate the annual price trend from training data using a linear regression on year
-# then add the missing years-worth of trend back onto predictions for 2024-2026
 from sklearn.linear_model import LinearRegression
 
 annual = train.groupby('year')[TARGET].mean().reset_index()
@@ -916,12 +934,10 @@ print(f'estimated annual price trend from training: {trend_per_year:+.4f} cents 
 
 max_train_year = int(train['year'].max())
 
-# for each test row, add trend * years_beyond_training on top of raw prediction
 test_pred_raw = model.predict(X_test)
 years_beyond = (X_test['year'] - max_train_year).clip(lower=0).values
 test_pred = test_pred_raw + trend_per_year * years_beyond
 
-# also apply a small constant shift from validation residuals to correct any remaining level bias
 val_residuals = y_val.values - model.predict(X_val)
 bias = float(np.percentile(val_residuals, 75))
 test_pred = test_pred + bias
@@ -937,15 +953,14 @@ baseline_rmse = np.sqrt(mean_squared_error(y_test, np.full(len(y_test), y_train.
 
 print('test set metrics (2024 to 2026) with trend + bias correction:')
 print(f'rmse: {test_rmse:.4f} cents per kwh')
-print(f'mae:  {test_mae:.4f} cents per kwh')
-print(f'r2:   {test_r2:.4f}')
+print(f'mae: {test_mae:.4f} cents per kwh')
+print(f'r2: {test_r2:.4f}')
 print(f'mape: {test_mape:.2f}%')
 print(f'baseline rmse (predict training mean): {baseline_rmse:.4f}')
 print(f'improvement over baseline: {(baseline_rmse - test_rmse) / baseline_rmse * 100:.1f}%')
 
 logging.info(f'val rmse: {val_rmse:.4f} | test rmse: {test_rmse:.4f} | baseline: {baseline_rmse:.4f}')
 
-# residual plot
 residuals = y_test.values - test_pred
 fig_res = px.scatter(
     x=test_pred, y=residuals,
@@ -953,9 +968,18 @@ fig_res = px.scatter(
     title='residual plot on test set'
 )
 fig_res.add_hline(y=0, line_dash='dash', line_color='red')
+fig_res.write_html('../logs/residual_plot.html', include_plotlyjs='cdn')
 fig_res.show()
 
-# actual vs predicted
+plt.figure(figsize=(7, 4))
+plt.scatter(test_pred, residuals, s=10)
+plt.axhline(0, color='red', linestyle='--')
+plt.title('residual plot on test set')
+plt.xlabel('predicted price (cents per kwh)')
+plt.ylabel('residual (actual minus predicted)')
+plt.tight_layout()
+plt.show()
+
 fig_ap = px.scatter(
     x=y_test, y=test_pred,
     labels={'x': 'actual price (cents per kwh)', 'y': 'predicted price (cents per kwh)'},
@@ -967,7 +991,19 @@ fig_ap.add_shape(
     x1=y_test.max(), y1=y_test.max(),
     line=dict(color='red', dash='dash')
 )
+fig_ap.write_html('../logs/actual_vs_predicted.html', include_plotlyjs='cdn')
 fig_ap.show()
+
+plt.figure(figsize=(7, 4))
+plt.scatter(y_test, test_pred, s=10)
+min_v = min(float(np.min(y_test)), float(np.min(test_pred)))
+max_v = max(float(np.max(y_test)), float(np.max(test_pred)))
+plt.plot([min_v, max_v], [min_v, max_v], 'r--')
+plt.title('actual vs predicted price on test set')
+plt.xlabel('actual price (cents per kwh)')
+plt.ylabel('predicted price (cents per kwh)')
+plt.tight_layout()
+plt.show()
 ```
 
     validation set metrics (2023):
@@ -979,8 +1015,8 @@ fig_ap.show()
     bias correction (75th pct of val residuals): +0.9085 cents per kwh
     test set metrics (2024 to 2026) with trend + bias correction:
     rmse: 2.0091 cents per kwh
-    mae:  1.4593 cents per kwh
-    r2:   0.8674
+    mae: 1.4593 cents per kwh
+    r2: 0.8674
     mape: 11.58%
     baseline rmse (predict training mean): 6.0192
     improvement over baseline: 66.6%
@@ -989,6 +1025,18 @@ fig_ap.show()
 
 
 
+    
+![png](pipeline_export_files/pipeline_export_20_2.png)
+    
+
+
+
+
+
+    
+![png](pipeline_export_files/pipeline_export_20_4.png)
+    
+
 
 ## Plotting feature importance
 - understand which features are more important in helping the model to make a decision
@@ -996,7 +1044,6 @@ fig_ap.show()
 
 
 ```python
-# show how much each feature contributed to the model's predictions
 importance_df = pd.DataFrame({
     'feature': FEATURES,
     'importance': model.feature_importances_
@@ -1012,9 +1059,24 @@ fig = px.bar(
     color_continuous_scale='Blues'
 )
 fig.update_layout(showlegend=False, height=350)
+fig.write_html('../logs/feature_importance.html', include_plotlyjs='cdn')
 fig.show()
+
+plt.figure(figsize=(7, 4))
+plt.barh(importance_df['feature'], importance_df['importance'])
+plt.title('xgboost feature importance')
+plt.xlabel('importance')
+plt.ylabel('feature')
+plt.tight_layout()
+plt.show()
 ```
 
+
+
+
+    
+![png](pipeline_export_files/pipeline_export_22_1.png)
+    
 
 
 ## Predicting price impact under 4 growth scenarios
@@ -1169,8 +1231,6 @@ predictions_df[predictions_df['state_abb'] == 'VA'].sort_values('scenario_label'
 
 
 ```python
-# choropleth map showing price change per state under each growth scenario
-# use the animation frame to flip between scenarios
 fig = px.choropleth(
     predictions_df,
     locations='state_abb',
@@ -1194,11 +1254,60 @@ fig = px.choropleth(
     }
 )
 fig.update_layout(height=550, coloraxis_colorbar=dict(title='cents per kwh'))
-fig.write_html('../logs/price_impact_map.html')
+fig.write_html('../logs/price_impact_map.html', include_plotlyjs='cdn')
 fig.show()
+
+scenario_labels = ['Low Growth', 'Moderate Growth', 'High Growth', 'Higher Growth']
+scenario_files = []
+
+for label in scenario_labels:
+    one_df = predictions_df[predictions_df['scenario_label'] == label].copy()
+
+    fig_one = px.choropleth(
+        one_df,
+        locations='state_abb',
+        locationmode='USA-states',
+        color='price_delta',
+        scope='usa',
+        color_continuous_scale='RdYlGn_r',
+        range_color=[
+            predictions_df['price_delta'].quantile(0.05),
+            predictions_df['price_delta'].quantile(0.95)
+        ],
+        title=f'price change map - {label}',
+        labels={'price_delta': 'price change (cents per kwh)'}
+    )
+
+    safe_name = label.lower().replace(' ', '_')
+    html_path = f'../logs/price_impact_map_{safe_name}.html'
+    png_path = f'../logs/price_impact_map_{safe_name}.png'
+
+    fig_one.write_html(html_path, include_plotlyjs='cdn')
+    fig_one.write_image(png_path, width=1200, height=700, scale=2)
+
+    scenario_files.append((label, png_path))
+
+fig_m, axes = plt.subplots(2, 2, figsize=(14, 8))
+axes = axes.flatten()
+
+for i, (label, png_path) in enumerate(scenario_files):
+    img = plt.imread(png_path)
+    axes[i].imshow(img)
+    axes[i].set_title(label)
+    axes[i].axis('off')
+
+plt.tight_layout()
+plt.show()
+
 logging.info('choropleth saved')
 ```
 
+
+
+
+    
+![png](pipeline_export_files/pipeline_export_26_1.png)
+    
 
 
 ## Heatmap
@@ -1206,7 +1315,6 @@ logging.info('choropleth saved')
 
 
 ```python
-# pivot so rows are states and columns are scenarios
 pivot = predictions_df.pivot_table(
     index='state_abb',
     columns='scenario_label',
@@ -1214,15 +1322,11 @@ pivot = predictions_df.pivot_table(
     aggfunc='mean'
 )
 
-# put columns in order from least to most growth
 col_order = ['Low Growth', 'Moderate Growth', 'High Growth', 'Higher Growth']
 pivot = pivot[col_order]
 
-# remove the scenario_label column name label from the axis
 pivot.columns.name = None
 
-# only show states that receive at least some projected dc additions
-# states with 0.00 across all scenarios get no new dcs under any scenario
 affected = pivot[pivot.abs().max(axis=1) > 0]
 affected = affected.sort_values('Higher Growth', ascending=False)
 
@@ -1237,8 +1341,20 @@ fig2 = px.imshow(
     aspect='auto'
 )
 fig2.update_layout(height=500)
+fig2.write_html('../logs/price_impact_heatmap.html', include_plotlyjs='cdn')
 fig2.write_image('../logs/price_impact_heatmap.png', width=1200, height=600, scale=2)
 fig2.show()
+
+plt.figure(figsize=(10, 6))
+plt.imshow(affected.values, aspect='auto', cmap='RdYlGn_r')
+plt.colorbar(label='cents per kwh')
+plt.xticks(range(len(affected.columns)), affected.columns, rotation=45, ha='right')
+plt.yticks(range(len(affected.index)), affected.index)
+plt.title('price change by state and growth scenario (cents per kwh)')
+plt.xlabel('scenario')
+plt.ylabel('state')
+plt.tight_layout()
+plt.show()
 
 logging.info('pipeline complete')
 print('pipeline complete')
@@ -1250,5 +1366,20 @@ print('pipeline complete')
 
 
 
+
+    
+![png](pipeline_export_files/pipeline_export_28_2.png)
+    
+
+
     pipeline complete
 
+
+## Analysis
+
+- According to the predicted price changes (both the heatmap and the choropleth map), it seems like an injection of new data centers to each state will cause a general increase in prices across all states. However, under all growth scenarios, it seems like some states will actually experience a decrease in electrical prices compared to some other states. (like California under the high growth scenario). This indicates that states like California utilizes renewable energy to generate a larger portion of their electricity, hence is able to utilize that to their advantage by lower prices even though more data centers are poured in. This relationship is probably discovered by the model as we are also utilizing the percentage of renewable energy in our model. 
+
+### Does it solve the problem?
+
+- Although I wouldn't say that the model is perfect, it does show that the model has learned some relationships between price increase and the number of data centers in a state. And especially how different state's prices may look different due to different infrastructures (utilization of renewable energy for example) judging by the data from the past decade. 
+- Hence, the outcome of this model can definitely be served as a useful source of insight for policy makers to see how prices may change across the United States if they choose to allow the rapid expansion of Data Centers across the country. And what kind of power generating infrastructure should they retain or build in order to ensure that prices don't spike up significantly, or even lower the prices by choosing to pivot to renewable energy from traditional sources of electricity generation methodologies (i.e. burning fossil fuels)
